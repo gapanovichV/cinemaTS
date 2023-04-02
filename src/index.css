@@ -1,0 +1,8 @@
+@import "normalize.css";
+
+
+a:active, /* активная/посещенная ссылка */
+a:hover,  /* при наведении */
+a {
+  text-decoration: none;
+}
