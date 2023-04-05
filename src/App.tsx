@@ -1,17 +1,20 @@
 import React from 'react';
-import Card from './components/Card';
+import Items from './components/Items';
 import Header from './components/Header';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient()
+import { useAppSelector, useAppDispatch } from './redux/hooks';
+import { fetchAllMovie } from './redux/allMovie/asyncActions';
 
 const App = () => {
+	const state = useAppSelector((state) => state.allMovie);
+	const dispatch = useAppDispatch();
+
+	React.useEffect(() => {
+		dispatch(fetchAllMovie());
+	}, []);
 	return (
 		<>
-			<QueryClientProvider client={queryClient}>
-				<Header />
-				<Card />
-			</QueryClientProvider>
+			<Header />
+      <Items />
 		</>
 	);
 };
