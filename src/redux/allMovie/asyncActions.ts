@@ -6,6 +6,7 @@ const API = import.meta.env.VITE_API_MOVIE;
 const URL = import.meta.env.VITE_API_URL;
 
 export const fetchAllMovie = createAsyncThunk<Doc>('movie/fetchAllMovie', async () => {
+  console.log('allMovieSlice')
 	const { data } = await axios.get<Doc>(`${URL}/movie`, {
 		params: {
 			token: API,

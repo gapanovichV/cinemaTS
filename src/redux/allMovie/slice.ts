@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { fetchAllMovie } from './asyncActions';
-import { Doc, MovieSliceState, Status } from './types';
+import { Doc, MovieSliceState } from './types';
+import { Status } from '../typeGlobal';
 
 const initialData = { docs: [], total: 0, limit: 0, page: 0, pages: 0 };
 
@@ -9,7 +10,7 @@ const initialState: MovieSliceState = {
 	status: Status.LOADING,
 };
 
-export const movieSlice = createSlice({
+export const allMovieSlice = createSlice({
 	name: 'movie',
 	initialState,
 	reducers: {
@@ -33,5 +34,5 @@ export const movieSlice = createSlice({
 	},
 });
 
-export const { setItems } = movieSlice.actions;
-export default movieSlice.reducer;
+export const { setItems } = allMovieSlice.actions;
+export default allMovieSlice.reducer;
