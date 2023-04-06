@@ -11,6 +11,7 @@ const App = () => {
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
+    dispatch(fetchAllMovie())
     dispatch(fetchSingleMovie(901914))
 	}, []);
 
