@@ -1,25 +1,11 @@
-import { Status } from "../typeGlobal";
+import { Status } from './../allMovie/types';
 
-export interface SearchMovieParams {
-	page: number;
-	type: 'movie' | 'tv-series' | 'cartoon' | 'anime' | 'animated-series' | 'tv-show';
-}
-
-
-export interface MovieSliceState {
-	data: Doc;
+export interface singleMovieState {
+	data: SingleMovie;
 	status: Status;
 }
 
-export interface Doc {
-	docs: Movie[];
-	total: number;
-	limit: number;
-	page: number;
-	pages: number;
-}
-
-export interface Movie {
+export interface SingleMovie {
 	id: number;
 	externalId: ExternalId;
 	name: string;
@@ -255,5 +241,3 @@ export interface ProductionCompany {
 	url: string;
 	previewUrl: string;
 }
-export { Status };
-
