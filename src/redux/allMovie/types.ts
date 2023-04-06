@@ -1,17 +1,29 @@
+export enum Status {
+	LOADING = 'loading',
+	SUCCESS = 'completed',
+	ERROR = 'error',
+}
+
 export interface SearchMovieParams {
 	page: number;
 	type: 'movie' | 'tv-series' | 'cartoon' | 'anime' | 'animated-series' | 'tv-show';
 }
 
-export interface Movie {
-	docs: Doc[];
+
+export interface MovieSliceState {
+	data: Doc;
+	status: Status;
+}
+
+export interface Doc {
+	docs: Movie[];
 	total: number;
 	limit: number;
 	page: number;
 	pages: number;
 }
 
-export interface Doc {
+export interface Movie {
 	id: number;
 	externalId: ExternalId;
 	name: string;
