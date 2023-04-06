@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const Items = () => {
+export const FullMovie: React.FC = () => {
 	return (
 		<Grid
 			sx={{ padding: 5, paddingTop: 15 }}
@@ -17,7 +17,7 @@ const Items = () => {
 			<Grid>
 				<CardMedia component="img" height="600" image={''} alt="green iguana" />
 			</Grid>
-      <Grid xs={4} >
+			<Grid xs={4}>
 				<CardContent>
 					<Typography gutterBottom variant="h3" component="div">
 						name
@@ -33,5 +33,3 @@ const Items = () => {
 		</Grid>
 	);
 };
-
-export default Items;

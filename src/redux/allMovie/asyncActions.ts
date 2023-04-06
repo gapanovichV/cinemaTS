@@ -2,10 +2,13 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Doc, SearchMovieParams } from './types';
 
+const API = import.meta.env.VITE_API_MOVIE;
+const URL = import.meta.env.VITE_API_URL;
+
 export const fetchAllMovie = createAsyncThunk<Doc>('movie/fetchAllMovie', async () => {
-	const { data } = await axios.get<Doc>('https://api.kinopoisk.dev/movie', {
+	const { data } = await axios.get<Doc>(`${URL}/movie`, {
 		params: {
-			token: 'A8XQ8TK-E4V4KB1-HZVNGXG-ED5ZQZY',
+			token: API,
 			limit: 20,
 		},
 	});

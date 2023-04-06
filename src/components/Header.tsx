@@ -49,7 +49,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-const Header = () => {
+export const Header: React.FC = () => {
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -72,5 +72,3 @@ const Header = () => {
 		</Box>
 	);
 };
-
-export default Header;
