@@ -7,7 +7,8 @@ import { Layout } from './pages/Layout';
 
 import { useAppDispatch } from './redux/store';
 import { fetchAllMovie } from './redux/allMovie/asyncActions';
-import { fetchSingleMovie } from './redux/SingleMovie/asyncActions';
+import { useSelector } from 'react-redux';
+import { selectAllMovieData } from './redux/filterMovie/selector';
 
 const router = createBrowserRouter([
 	{
@@ -28,11 +29,16 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+	const { currentPage } = useSelector(selectAllMovieData);
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
-		dispatch(fetchAllMovie());
-	}, []);
+		dispatch(
+			fetchAllMovie({
+				currentPage: 1,
+			}),
+		);
+	}, [currentPage]);
 
 	return (
 		<>
