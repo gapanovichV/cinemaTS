@@ -1,5 +1,8 @@
 @import "normalize.css";
 
+body {
+  background-color: #e1e4e8
+}
 
 a:active, /* активная/посещенная ссылка */
 a:hover,  /* при наведении */
