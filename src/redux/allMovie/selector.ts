@@ -1,3 +1,3 @@
 import { RootState } from '../store';
 
-export const selectMovieData = (state: RootState) => state.allMovie;
+export const selectAllMovieData = (state: RootState) => state.allMovie;

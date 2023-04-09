@@ -1,19 +1,20 @@
-import { Status } from '../redux/allMovie/types';
 import { useSelector } from 'react-redux';
-import { selectMovieData } from '../redux/allMovie/selector';
+
+import { Movie, Status } from '../redux/allMovie/types';
+import { selectAllMovieData } from '../redux/allMovie/selector';
+
 import { MovieCard } from './MovieCard';
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { createTheme } from '@mui/material/styles';
 
 export const Home: React.FC = () => {
-	const { data, status } = useSelector(selectMovieData);
+	const { data, status } = useSelector(selectAllMovieData);
 
-	const movie = data.docs.map((obj: any) => <MovieCard key={obj.id} {...obj} />);
-  
+	const movie = data.docs.map((obj: Movie) => <MovieCard key={obj.id} {...obj} />);
+
 	return (
-		<Box sx={{ padding: 5, paddingTop: 10, bgcolor: "#e1e4e8" }}>
+		<Box sx={{ padding: 5, paddingTop: 10 }}>
 			<Grid
 				container
 				direction="row"
