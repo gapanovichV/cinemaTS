@@ -5,10 +5,6 @@ import { Home } from './pages/Home';
 import { FullMovie } from './pages/FullMovie';
 import { Layout } from './pages/Layout';
 
-import { useAppDispatch } from './redux/store';
-import { fetchAllMovie } from './redux/allMovie/asyncActions';
-import { fetchSingleMovie } from './redux/SingleMovie/asyncActions';
-
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -28,12 +24,6 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-	const dispatch = useAppDispatch();
-
-	React.useEffect(() => {
-		dispatch(fetchAllMovie());
-	}, []);
-
 	return (
 		<>
 			<RouterProvider router={router} />

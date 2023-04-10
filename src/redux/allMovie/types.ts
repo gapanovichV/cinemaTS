@@ -1,10 +1,5 @@
 import { Status } from "../typeGlobal";
 
-export interface SearchMovieParams {
-	page: number;
-	type: 'movie' | 'tv-series' | 'cartoon' | 'anime' | 'animated-series' | 'tv-show';
-}
-
 
 export interface MovieSliceState {
 	data: Doc;
