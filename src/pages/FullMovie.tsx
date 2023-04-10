@@ -36,7 +36,7 @@ export const FullMovie: React.FC = () => {
 			alignItems="stretch"
 		>
 			{status === Status.ERROR ? (
-				<h1>Произошла ошибка</h1>
+				<h1>ERROR</h1>
 			) : (
 				<>
 					<Grid>

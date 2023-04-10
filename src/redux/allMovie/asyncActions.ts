@@ -14,7 +14,7 @@ export const fetchAllMovie = createAsyncThunk<Doc, FilterType>(
 		const { data } = await axios.get<Doc>(`${URL}/movie`, {
 			params: {
 				token: API,
-				limit: 20,
+				limit: 14,
 				page: currentPage,
 			},
 		});

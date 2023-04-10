@@ -1,3 +1,3 @@
 import { RootState } from '../store';
 
-export const selectAllMovieData = (state: RootState) => state.filter;
+export const selectFilterMovieData = (state: RootState) => state.filter;
