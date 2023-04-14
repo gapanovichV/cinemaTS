@@ -3,6 +3,7 @@ import { FilterType } from './types';
 
 const initialState: FilterType = {
 	currentPage: 1,
+	name: '',
 };
 
 export const FilterMovieSlice = createSlice({
@@ -12,8 +13,11 @@ export const FilterMovieSlice = createSlice({
 		setCurrentPage(state, action: PayloadAction<number>) {
 			state.currentPage = action.payload;
 		},
+		setSearchName(state, action: PayloadAction<string>) {
+			state.name = action.payload;
+		},
 	},
 });
 
-export const { setCurrentPage } = FilterMovieSlice.actions;
+export const { setCurrentPage, setSearchName } = FilterMovieSlice.actions;
 export default FilterMovieSlice.reducer;

@@ -14,16 +14,18 @@ import Box from '@mui/material/Box';
 
 import { Pagination } from '../components/Pagination/Paganation';
 import { setCurrentPage } from '../redux/filterMovie/slice';
+import { useParams } from 'react-router-dom';
 
 export const Home: React.FC = () => {
 	const { data, status } = useSelector(selectAllMovieData);
-	const { currentPage } = useSelector(selectFilterMovieData);
+	const { currentPage, name } = useSelector(selectFilterMovieData);
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
 		dispatch(
 			fetchAllMovie({
 				currentPage: currentPage,
+				name: name,
 			}),
 		);
 	}, [currentPage]);
