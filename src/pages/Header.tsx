@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../redux/store';
+
+import { fetchAllMovie } from '../redux/allMovie/asyncActions';
+
+import { selectFilterMovieData } from '../redux/filterMovie/selector';
 
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -7,6 +13,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
+import { setSearchName } from '../redux/filterMovie/slice';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -50,6 +57,35 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export const Header: React.FC<LinkProps> = () => {
+	const { currentPage } = useSelector(selectFilterMovieData);
+	const dispatch = useAppDispatch();
+
+	const [value, setValue] = React.useState('');
+
+	const searchByName = () => {
+		dispatch(setSearchName(value));
+		dispatch(
+			fetchAllMovie({
+				currentPage: currentPage,
+				name: value,
+			}),
+		);
+	};
+
+	const handleKeyDown = (e: { keyCode: number }) => {
+		if (e.keyCode === 13) searchByName();
+	};
+
+	const handleClickMenu = () => {
+		dispatch(setSearchName(''));
+		dispatch(
+			fetchAllMovie({
+				currentPage: 1,
+				name: '',
+			}),
+		);
+	};
+  
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -60,13 +96,21 @@ export const Header: React.FC<LinkProps> = () => {
 						component="div"
 						sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
 					>
-						<Link style={{ color: 'white' }} to={'/'}>
+						<Link onClick={handleClickMenu} style={{ color: 'white' }} to={'/'}>
 							MUI
 						</Link>
 					</Typography>
 					<Search>
 						<SearchIconWrapper></SearchIconWrapper>
-						<StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+						<Link style={{ color: 'white' }} to={'/'}>
+							<StyledInputBase
+								value={value}
+								onChange={(e) => setValue(e.target.value)}
+								onKeyDown={handleKeyDown}
+								placeholder="Search…"
+								inputProps={{ 'aria-label': 'search' }}
+							/>
+						</Link>
 					</Search>
 				</Toolbar>
 			</AppBar>
