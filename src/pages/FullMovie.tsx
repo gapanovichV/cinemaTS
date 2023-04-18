@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { Status } from '../redux/typeGlobal';
@@ -12,12 +12,15 @@ import Grid from '@mui/material/Unstable_Grid2';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 
 export const FullMovie: React.FC = () => {
-	const { id } = useParams();
+  const { id } = useParams();
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-
+  
 	const { data, status } = useSelector(selectSingleMovieData);
+  
 	React.useEffect(() => {
 		if (id !== undefined) {
 			dispatch(fetchSingleMovie(Number(id)));
@@ -53,6 +56,13 @@ export const FullMovie: React.FC = () => {
 							<Typography variant="body2" color="text.secondary">
 								{data.description}
 							</Typography>
+							<Button
+								sx={{ width: '100%', height: 50, mt: 10, alignItems: 'center' }}
+								onClick={() => navigate(-1)}
+								variant="contained"
+							>
+								Назад
+							</Button>
 						</CardContent>
 					</Grid>
 				</>

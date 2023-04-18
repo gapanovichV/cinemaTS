@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import { setSearchName } from '../redux/filterMovie/slice';
+import { setCurrentPage, setSearchName } from '../redux/filterMovie/slice';
 
 const Search = styled('div')(({ theme }) => ({
 	position: 'relative',
@@ -79,9 +79,10 @@ export const Header: React.FC<LinkProps> = () => {
 	const handleClickMenu = () => {
 		setValue('');
 		dispatch(setSearchName(''));
+		dispatch(setCurrentPage(1));
 		dispatch(
 			fetchAllMovie({
-				currentPage: currentPage,
+				currentPage: 1,
 				name: '',
 			}),
 		);
