@@ -3,7 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Home } from './pages/Home';
 import { FullMovie } from './pages/FullMovie';
-import { Layout } from './pages/Layout';
+import { Layout } from './components/Layout';
+import { Login } from './pages/Login';
+import { Signup } from './pages/Signup';
 
 const router = createBrowserRouter([
 	{
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
 				element: <FullMovie />,
 			},
 		],
+	},
+	{
+		path: '/login',
+		element: <Login />,
+	},
+	{
+		path: '/signup',
+		element: <Signup />,
 	},
 ]);
 
