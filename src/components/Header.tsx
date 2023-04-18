@@ -77,15 +77,16 @@ export const Header: React.FC<LinkProps> = () => {
 	};
 
 	const handleClickMenu = () => {
+		setValue('');
 		dispatch(setSearchName(''));
 		dispatch(
 			fetchAllMovie({
-				currentPage: 1,
+				currentPage: currentPage,
 				name: '',
 			}),
 		);
 	};
-  
+
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">

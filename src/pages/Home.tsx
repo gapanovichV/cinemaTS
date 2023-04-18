@@ -7,12 +7,12 @@ import { fetchAllMovie } from '../redux/allMovie/asyncActions';
 import { selectAllMovieData } from '../redux/allMovie/selector';
 import { selectFilterMovieData } from '../redux/filterMovie/selector';
 
-import { MovieCard } from './MovieCard';
+import { MovieCard } from '../components/MovieCard';
 
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 
-import { Pagination } from '../components/Pagination/Paganation';
+import { Pagination } from '../components/Pagination/Pagination';
 import { setCurrentPage } from '../redux/filterMovie/slice';
 import { useParams } from 'react-router-dom';
 
@@ -48,7 +48,9 @@ export const Home: React.FC = () => {
 			>
 				{status === Status.ERROR ? <h1>Произошла ошибка не удалось получать данные</h1> : movie}
 			</Grid>
-			<Pagination currentPage={currentPage} onChangePage={onChangePage} alsoPage={data.pages} />
+			{status === Status.SUCCESS ? (
+				<Pagination currentPage={currentPage} onChangePage={onChangePage} alsoPage={data.pages} />
+			) : null}
 		</Box>
 	);
 };

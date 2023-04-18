@@ -5,10 +5,8 @@ import { Outlet } from 'react-router-dom';
 export const Layout = () => {
 	return (
 		<>
-			<Header to={''}/>
+			<Header to={''} />
 			<Outlet />
 		</>
 	);
 };
-
-

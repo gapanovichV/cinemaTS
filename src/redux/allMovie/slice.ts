@@ -30,6 +30,7 @@ export const allMovieSlice = createSlice({
 		builder.addCase(fetchAllMovie.rejected, (state, action) => {
 			state.data = initialData;
 			state.status = Status.ERROR;
+      console.log(action)
 		});
 	},
 });
