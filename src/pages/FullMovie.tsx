@@ -21,7 +21,7 @@ export const FullMovie: React.FC = () => {
   
 	const { data, status } = useSelector(selectSingleMovieData);
   
-	React.useEffect(() => {
+	React.useEffect(()=> {
 		if (id !== undefined) {
 			dispatch(fetchSingleMovie(Number(id)));
 		} else {
