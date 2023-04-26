@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 import { useForm } from 'react-hook-form';
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -11,17 +13,26 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 
 export const Signup = () => {
+	const auth= getAuth();
+	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm();
-	const onSubmit = (data: any) => console.log(data);
+
+	const onSubmit = (data: any) => {
+		createUserWithEmailAndPassword(auth, data.email, data.password)
+			.then((userCredential) => {
+				const user = userCredential.user;
+				navigate("/")
+			})
+			.catch(console.error)
+	}
 	return (
 		<Box
 			sx={{
-				background: 'gray',
+				background: '#c2c2c2',
 				height: '100vh',
 				display: 'grid',
 				placeItems: 'center',
@@ -31,12 +42,12 @@ export const Signup = () => {
 				<Box
 					sx={{
 						maxWidth: 500,
-						padding: 12,
+						padding: 10,
 						margin: 'auto',
 						display: 'flex',
 						justifyContent: 'center',
 						flexDirection: 'column',
-						background: '#fff',
+						background: '#ffffff',
 						gap: 3,
 					}}
 				>

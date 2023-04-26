@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -12,16 +13,27 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
-import FormControl from '@mui/material/FormControl';
 
 export const Login = () => {
+	const auth = getAuth();
+	const navigate = useNavigate();
+
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm();
-	const onSubmit = (data: any) => console.log(data);
+
+	const onSubmit = (data: any) => {
+		console.log(data);
+		signInWithEmailAndPassword(auth, data.email, data.password)
+			.then((userCredential) => {
+				const user = userCredential.user;
+				navigate('/');
+			})
+			.catch(console.error);
+	};
+
 	const [showPassword, setShowPassword] = React.useState(false);
 	return (
 		<Box
@@ -52,12 +64,19 @@ export const Login = () => {
 						style={{ display: 'flex', flexDirection: 'column', gap: 14, justifyContent: 'center' }}
 						onSubmit={handleSubmit(onSubmit)}
 					>
-						<TextField id="outlined" label="Логин" autoComplete="off" type="name" />
 						<TextField
-							id="outlined"
+							id="email"
+							label="Email"
+							autoComplete="off"
+							type="email"
+							{...register('email', { required: true })}
+						/>
+						<TextField
+							id="password"
 							label="Пароль"
-							autoComplete="current-password"
+							autoComplete="off"
 							type={showPassword ? 'text' : 'password'}
+							{...register('password', { required: true })}
 							InputProps={{
 								endAdornment: (
 									<InputAdornment position="end">
