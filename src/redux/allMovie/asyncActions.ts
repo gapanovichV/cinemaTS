@@ -8,7 +8,7 @@ const URL = import.meta.env.VITE_API_URL;
 
 export const fetchAllMovie = createAsyncThunk<Doc, FilterType>(
 	'movie/fetchAllMovie',
-	async (params) => {
+	async (params: FilterType) => {
 		const { currentPage, name } = params;
 		const res = await axios.get<Doc>(`${URL}/movie`, {
 			params: {

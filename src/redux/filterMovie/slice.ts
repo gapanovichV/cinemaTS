@@ -10,10 +10,10 @@ export const FilterMovieSlice = createSlice({
 	name: 'filterMovie',
 	initialState,
 	reducers: {
-		setCurrentPage(state, action: PayloadAction<number>) {
+		setCurrentPage(state: FilterType, action: PayloadAction<number>) {
 			state.currentPage = action.payload;
 		},
-		setSearchName(state, action: PayloadAction<string>) {
+		setSearchName(state: FilterType, action: PayloadAction<string>) {
 			state.name = action.payload;
 		},
 	},

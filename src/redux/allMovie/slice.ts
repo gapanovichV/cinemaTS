@@ -14,20 +14,20 @@ export const allMovieSlice = createSlice({
 	name: 'movie',
 	initialState,
 	reducers: {
-		setItems(state, action: PayloadAction<Doc>) {
+		setItems(state: MovieSliceState, action: PayloadAction<Doc>) {
 			state.data = action.payload;
 		},
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchAllMovie.pending, (state, action) => {
+		builder.addCase(fetchAllMovie.pending, (state: MovieSliceState, action) => {
 			state.data = initialData;
 			state.status = Status.LOADING;
 		});
-		builder.addCase(fetchAllMovie.fulfilled, (state, action) => {
+		builder.addCase(fetchAllMovie.fulfilled, (state: MovieSliceState, action) => {
 			state.data = action.payload;
 			state.status = Status.SUCCESS;
 		});
-		builder.addCase(fetchAllMovie.rejected, (state, action) => {
+		builder.addCase(fetchAllMovie.rejected, (state: MovieSliceState, action) => {
 			state.data = initialData;
 			state.status = Status.ERROR;
       console.log(action)
