@@ -3,12 +3,14 @@ import { useDispatch } from 'react-redux';
 import allMovieSlice from './allMovie/slice';
 import singleMovieSlice from './SingleMovie/slice';
 import FilterMovieSlice from './filterMovie/slice';
+import userSlice from "./user/slice";
 
 export const store = configureStore({
 	reducer: {
 		allMovie: allMovieSlice,
 		singleMovie: singleMovieSlice,
 		filter: FilterMovieSlice,
+		user: userSlice,
 	},
 });
 

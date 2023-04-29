@@ -7,8 +7,7 @@ const URL = import.meta.env.VITE_API_URL;
 
 export const fetchSingleMovie = createAsyncThunk<SingleMovie, number>(
 	'movie/fetchSingleMovie',
-	async (id) => {
-		console.log('id', id);
+	async (id: number) => {
 		const { data } = await axios.get<SingleMovie>(`${URL}/movie/${id}`, {
 			params: {
 				token: API,
