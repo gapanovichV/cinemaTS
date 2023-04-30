@@ -8,9 +8,23 @@ import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { useAuth } from "./hooks/use-auth";
 import { HomeNotAuth } from "./pages/HomeNotAuth";
+import { useAppDispatch } from "./redux/store";
+import { setUser } from "./redux/user/slice";
 
 const App = () => {
   const { isAuth } = useAuth();
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    const storage: string | null = localStorage.getItem("user");
+    if (storage !== null) {
+      const user = JSON.parse(storage);
+      dispatch(
+        dispatch(setUser({ email: user.email, token: "55", id: user.uid }))
+      );
+    }
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",

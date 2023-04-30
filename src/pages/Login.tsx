@@ -32,6 +32,10 @@ export const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         dispatch(setUser({ email: user.email, token: "55", id: user.uid }));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ email: user.email, token: "55", id: user.uid })
+        );
         navigate("/");
       })
       .catch(console.error);
